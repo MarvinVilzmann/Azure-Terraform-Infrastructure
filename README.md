@@ -32,6 +32,8 @@ The deployment creates:
 - one public IP and network interface
 - one Ubuntu Linux VM
 
+![Architecture](images/architecture.png)
+
 ## Files
 
 - `provider.tf` - provider configuration
@@ -56,25 +58,43 @@ Initialize Terraform:
 
 ```bash
 terraform init
+```
 Validate configuration:
-
+```bash
 terraform validate
-
+```
 Preview changes:
-
+```bash
 terraform plan
-
+```
 Deploy infrastructure:
-
+```bash
 terraform apply
-
+```
 Destroy infrastructure after testing:
-
+```bash
 terraform destroy
-Notes
+```
+Get public VM IP:
+```bash
+terraform output
+```
+Generate SSH key for SSH connection
+```bash
+ssh-keygen -t rsa -b 4096 -f "PATH/azure_tf_key"
+```
+Powershell SSH connection to the VM
+```bash
+ssh -i "PATH/azure_tf_key" azureuser@PUBLICIP
+```
+Key Path must be added to the .tfvars file - *ssh_public_key_path*
+
+## Notes
+
 The VM size used in this project is Standard_D2s_v3.
 Costs can occur while resources are running.
 Always destroy resources after testing to avoid unnecessary charges.
-Learning Outcome
+
+## Learning Outcome
 
 With this project I practiced deploying Azure infrastructure with Terraform, including networking, security, compute resources and SSH connectivity.
