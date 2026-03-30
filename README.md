@@ -10,7 +10,9 @@ This project deploys a small Azure infrastructure using Terraform.
 - Network Security Group with SSH rule
 - Public IP
 - Network Interface
-- Linux Virtual Machine
+- Linux Virtual Machine with NGINX Web Server
+- Public Load Balancer
+- Inbound NAT
 
 ## Goal
 
@@ -21,6 +23,7 @@ The goal of this project is to practice:
 - Terraform workflow
 - Network and security fundamentals
 - VM deployment and SSH access
+- Create load balanced webservers
 
 ## Architecture
 
@@ -28,9 +31,11 @@ The deployment creates:
 
 - one resource group in Azure
 - one virtual network with one subnet
-- one network security group allowing SSH (TCP/22)
+- one network security group allowing SSH (TCP/22) and HTTP (TCP/80)
 - one public IP and network interface
-- one Ubuntu Linux VM
+- two Ubuntu Linux VM
+- one public load balancer
+- one inbound NAT
 
 ![Architecture](images/architecture.png)
 
@@ -44,6 +49,7 @@ The deployment creates:
 - `variables.tf` - variable definitions
 - `terraform.tfvars` - environment-specific values
 - `outputs.tf` - Terraform outputs
+- `loadbalancer.tf` - loadbalancer, healthprobe and NAT
 
 ## Requirements
 
